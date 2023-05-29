@@ -1,80 +1,93 @@
 <div class="container py-4">
-  <div id="carouselExample" class="carousel slide mb-4">
-    <div class="carousel-inner rounded-4">
-      <div *ngFor="let new of breakingNews; let isFirst = first" class="carousel-item" [class.active]="isFirst">
-        <img [src]="new.picture" height="420" class="d-block w-100 object-fit-cover" alt="...">
-        <div class="gradient rounded-4"></div>
-        <div class="carousel-caption d-none d-md-block">
-          <h6>Noticia de ultima hora</h6>
-          <h2 class="mb-3">{{ new.title }}</h2>
-          <button class="btn btn-primary" (click)="navigateToNew(new.id)">Leer ahora</button>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-
-  <!-- News preview -->
-  <div class="mb-4 d-flex justify-content-between align-items-center">
-    <h3 class="fw-bold">Novedades principales</h3>
-    <newsby-switch-button
-      [text]="showCardFormat === 'NACIONAL' ? 'INTERNACIONAL' : 'NACIONAL'"
-      [buttonClasses]="showCardFormat === 'NACIONAL' ? 'btn-primary' : 'btn-warning'"
-      (emitInformation)="changeFormatNews($event)">
-    </newsby-switch-button>
-  </div>
-
-  <section class="row g-4">
-    <ng-container *ngIf="showCardFormat === 'NACIONAL'; else international">
-      <div *ngFor="let new of nationalNews" class="col-3">
-        <newsby-news-preview [idNew]="new.id" [title]="new.title" [section]="new.section" [picture]="new.picture" [date]="new.date" [city]="new.city" (emitId)="addNewList($event)"></newsby-news-preview>
-      </div>
-    </ng-container>
-    <ng-template #international>
-      <div *ngFor="let new of internationalNews" class="col-3">
-        <newsby-news-preview [idNew]="new.id" [title]="new.title" [section]="new.section" [picture]="new.picture" [date]="new.date" [city]="new.city" (emitId)="addNewList($event)"></newsby-news-preview>
-      </div>
-    </ng-template>
-  </section>
-
-  <hr class="my-5">
-
-  <!-- News selection preview -->
-  <h3 class="fw-bold text-dark">Mi selección</h3>
-  <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac sollicitudin elit. </p>
-  <ng-container *ngIf="myNewsList.length > 0; else emptyView">
-    <section class="row g-4 mb-5">
-      <div *ngFor="let new of myNewsList" class="col-6">
-        <div (click)="navigateToNew(new.id)" class="card h-100 rounded-4 border-0 cursor-pointer" role="button">
-          <div class="card-body text-start d-flex flex-column justify-content-between">
-            <div class="content">
-              <img [src]="new.picture" alt="news-image" height="240" class="w-100 mb-3 rounded-4 object-fit-cover">
-              <h6 class="mb-2">{{ new.title }}</h6>
-              <small class="text-secondary mb-3">Reportero: {{ new.reporter }}</small>
-              <p class="mb-3">{{ new.description }}</p>
-            </div>
-            <div class="d-flex justify-content-end w-100 gap-2">
-              <button class="btn btn-outline-primary" (click)="removeNewList(new.id)"><i class="bi bi-trash3"></i></button>
-            </div>
+  <ng-container *ngIf="!titleNew.length; else searchResult">
+    <div id="carouselExample" class="carousel slide mb-4">
+      <div class="carousel-inner rounded-4">
+        <div *ngFor="let new of breakingNews; let isFirst = first" class="carousel-item" [class.active]="isFirst">
+          <img [src]="new.picture" height="420" class="d-block w-100 object-fit-cover" alt="...">
+          <div class="gradient rounded-4"></div>
+          <div class="carousel-caption d-none d-md-block">
+            <h6>Noticia de ultima hora</h6>
+            <h2 class="mb-3">{{ new.title }}</h2>
+            <button class="btn btn-primary" (click)="navigateToNew(new.id)">Leer ahora</button>
           </div>
         </div>
       </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- News preview -->
+    <div class="mb-4 d-flex justify-content-between align-items-center">
+      <h3 class="fw-bold">Novedades principales</h3>
+      <newsby-switch-button
+        [text]="showCardFormat === 'NACIONAL' ? 'INTERNACIONAL' : 'NACIONAL'"
+        [buttonClasses]="showCardFormat === 'NACIONAL' ? 'btn-primary' : 'btn-warning'"
+        (emitInformation)="changeFormatNews($event)">
+      </newsby-switch-button>
+    </div>
+
+    <section class="row g-4">
+      <ng-container *ngIf="showCardFormat === 'NACIONAL'; else international">
+        <div *ngFor="let new of nationalNews" class="col-3">
+          <newsby-news-preview [idNew]="new.id" [title]="new.title" [section]="new.section" [picture]="new.picture" [date]="new.date" [city]="new.city" (emitId)="addNewList($event)"></newsby-news-preview>
+        </div>
+      </ng-container>
+      <ng-template #international>
+        <div *ngFor="let new of internationalNews" class="col-3">
+          <newsby-news-preview [idNew]="new.id" [title]="new.title" [section]="new.section" [picture]="new.picture" [date]="new.date" [city]="new.city" (emitId)="addNewList($event)"></newsby-news-preview>
+        </div>
+      </ng-template>
     </section>
+
+    <hr class="my-5">
+
+    <!-- News selection preview -->
+    <h3 class="fw-bold text-dark">Mi selección</h3>
+    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac sollicitudin elit. </p>
+    <ng-container *ngIf="myNewsList.length > 0; else emptyView">
+      <section class="row g-4 mb-5">
+        <div *ngFor="let new of myNewsList" class="col-6">
+          <div (click)="navigateToNew(new.id)" class="card h-100 rounded-4 border-0 cursor-pointer" role="button">
+            <div class="card-body text-start d-flex flex-column justify-content-between">
+              <div class="content">
+                <img [src]="new.picture" alt="news-image" height="240" class="w-100 mb-3 rounded-4 object-fit-cover">
+                <h6 class="mb-2">{{ new.title }}</h6>
+                <small class="text-secondary mb-3">Reportero: {{ new.reporter }}</small>
+                <p class="mb-3">{{ new.description }}</p>
+              </div>
+              <div class="d-flex justify-content-end w-100 gap-2">
+                <button class="btn btn-outline-primary" (click)="removeNewList(new.id)"><i class="bi bi-trash3"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </ng-container>
+    <ng-template #emptyView>
+      <section class="d-flex flex-column align-items-center justify-content-center w-100 py-5">
+        <img width="180" class="mb-3" src="assets/img/empty.svg" alt="...">
+        <p class="text-secondary">No tienes noticias agregadas a tu selección</p>
+      </section>
+    </ng-template>
   </ng-container>
-  <ng-template #emptyView>
-    <section class="d-flex flex-column align-items-center justify-content-center w-100 py-5">
-      <img width="180" class="mb-3" src="assets/img/empty.svg" alt="...">
-      <p class="text-secondary">No tienes noticias agregadas a tu selección</p>
-    </section>
+  <ng-container >
+    <newsby-toast [icon]="_toastService.icon" [title]="_toastService.toastTitle" [message]="_toastService.toastMessage" [typeAlert]="_toastService.typeAlert" [showToast]="_toastService.showToast"></newsby-toast>
+  </ng-container>
+  <ng-template #searchResult>
+    <!-- News search -->
+    <div style="height: 90vh;">
+      <h3 class="fw-bold mb-4">Resultados</h3>
+      <section class="row g-4">
+        <div *ngFor="let new of matchNews" class="col-3">
+          <newsby-news-preview [idNew]="new.id" [title]="new.title" [section]="new.section" [picture]="new.picture" [date]="new.date" [city]="new.city" (emitId)="addNewList($event)"></newsby-news-preview>
+        </div>
+      </section>
+    </div>
   </ng-template>
 </div>
-<ng-container >
-  <newsby-toast [icon]="_toastService.icon" [title]="_toastService.toastTitle" [message]="_toastService.toastMessage" [typeAlert]="_toastService.typeAlert" [showToast]="_toastService.showToast"></newsby-toast>
-</ng-container>

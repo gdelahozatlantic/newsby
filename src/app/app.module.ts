@@ -11,6 +11,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NewsPreviewComponent } from './components/news-preview/news-preview.component';
 import { SwitchButtonComponent } from './components/switch-button/switch-button.component';
 import { ToastComponent } from './components/toast/toast.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ToastComponent } from './components/toast/toast.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
