@@ -1,8 +1,8 @@
 <div class="container py-4">
   <div id="carouselExample" class="carousel slide mb-4">
-    <div class="carousel-inner">
+    <div class="carousel-inner rounded-4">
       <div *ngFor="let new of breakingNews; let isFirst = first" class="carousel-item" [class.active]="isFirst">
-        <img [src]="new.picture" height="420" class="d-block rounded-4 w-100 object-fit-cover" alt="...">
+        <img [src]="new.picture" height="420" class="d-block w-100 object-fit-cover" alt="...">
         <div class="gradient rounded-4"></div>
         <div class="carousel-caption d-none d-md-block">
           <h6>Noticia de ultima hora</h6>
