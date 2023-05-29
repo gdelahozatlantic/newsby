@@ -1,8 +1,8 @@
-<header>
+<header class="w-100" style="position: fixed; z-index: 999">
   <!-- As a link -->
   <nav class="navbar bg-dark" data-bs-theme="dark">
     <div class="container">
-      <a class="navbar-brand" href="#">📰 <span class="fw-bold">NEWSBY</span> | Portal de noticias</a>
+      <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active">📰 <span class="fw-bold">NEWSBY</span> | Portal de noticias</a>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>

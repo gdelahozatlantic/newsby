@@ -1,0 +1,60 @@
+<div class="container py-4">
+  <div id="carouselExample" class="carousel slide mb-4">
+    <div class="carousel-inner">
+      <div *ngFor="let new of breakingNews; let isFirst = first" class="carousel-item" [class.active]="isFirst">
+        <img [src]="new.picture" height="420" class="d-block w-100 object-fit-cover" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- News preview -->
+  <div class="mb-4 d-flex justify-content-between align-items-center">
+    <h3 class="fw-bold">Novedades principales</h3>
+    <newsby-switch-button
+      [text]="showCardFormat === 'NACIONAL' ? 'INTERNACIONAL' : 'NACIONAL'"
+      [buttonClasses]="showCardFormat === 'NACIONAL' ? 'btn-primary' : 'btn-warning'"
+      (emitInformation)="changeFormatNews($event)">
+    </newsby-switch-button>
+  </div>
+
+  <section class="row g-4 mb-5">
+    <ng-container *ngIf="showCardFormat === 'NACIONAL'; else international">
+      <div *ngFor="let new of nationalNotes" class="col-3">
+        <newsby-news-preview [title]="new.title" [section]="new.section" [picture]="new.picture" [date]="new.date" [city]="new.city"></newsby-news-preview>
+      </div>
+    </ng-container>
+    <ng-template #international>
+      <div *ngFor="let new of internationalNotes" class="col-3">
+        <newsby-news-preview [title]="new.title" [section]="new.section" [picture]="new.picture" [date]="new.date" [city]="new.city"></newsby-news-preview>
+      </div>
+    </ng-template>
+  </section>
+
+  <!-- News selection preview -->
+  <h3 class="fw-bold text-dark">Mi selección</h3>
+  <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac sollicitudin elit. </p>
+  <section class="row g-4 mb-5">
+    <div class="col-6">
+      <div class="card rounded-4 border-0 cursor-pointer" role="button">
+        <div class="card-body text-start">
+          <img src="assets/img/baner-note.png" alt="news-image" height="240" class="w-100 mb-3 rounded-4">
+          <h6 class="mb-2">Lorem ipsum dolor sit amet</h6>
+          <small class="text-secondary mb-3">12/01/2023 - Fabian Ruiz</small>
+          <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac sollicitudin elit. Suspendisse commodo nibh quam, vel accumsan tellus malesuada ac. Suspendisse ex ipsum, posuere vitae porta ut, bibendum eu erat. Suspendisse potenti. Nunc fringilla porta magna, sed pretium arcu sollicitudin non. Nam accumsan sapien in justo iaculis, tempus cursus velit imperdiet. Quisque rhoncus sapien non orci eleifend convallis.</p>
+          <div class="d-flex justify-content-end w-100 gap-2">
+            <button class="btn btn-outline-primary"><i class="bi bi-trash3"></i></button>
+            <button class="btn btn-primary" [routerLink]="['/news']">Leer más</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
