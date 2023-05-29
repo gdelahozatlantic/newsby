@@ -1,15 +1,17 @@
-<div class="container py-4">
-  <div class="card rounded-4 border-0">
-    <div class="card-body p-5 text-start">
-      <img src="assets/img/baner-note.png" alt="news-image" height="420" class="w-100 mb-3 rounded-4">
-      <div class="container">
-        <h5 class="mb-2">Lorem ipsum dolor sit amet</h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac sollicitudin elit. Suspendisse commodo nibh quam, vel accumsan tellus malesuada ac. Suspendisse ex ipsum, posuere vitae porta ut, bibendum eu erat. Suspendisse potenti. Nunc fringilla porta magna, sed pretium arcu sollicitudin non. Nam accumsan sapien in justo iaculis, tempus cursus velit imperdiet. Quisque rhoncus sapien non orci eleifend convallis.</p>
-        <p>Morbi at placerat arcu. Cras sit amet gravida ex. Proin nec consectetur mauris. Curabitur vitae risus a felis blandit porta. Maecenas tempus nisl id lectus suscipit pharetra. Aenean vel scelerisque nisi, non maximus eros. Nam mollis interdum arcu, vel commodo elit dapibus quis. Nulla eget eleifend neque. Suspendisse potenti. In in metus at lectus cursus placerat non quis mi. Sed eu augue nec mi aliquam tristique. Nam porta risus nec tortor eleifend semper.</p>
-        <p>Morbi pretium, risus non condimentum ornare, est risus efficitur ante, nec faucibus nulla justo et purus. Donec pulvinar ac libero eget ultrices. Aenean sit amet efficitur ligula. Donec mollis dictum eros, ut facilisis lorem fringilla vitae. Aliquam a tellus ac lectus ornare rhoncus. Nunc vel lacus urna. Quisque lobortis fermentum erat. Etiam ac ipsum eu erat gravida lobortis. Praesent tristique pretium nunc nec condimentum. Donec ac ipsum id nibh pharetra consequat sed non magna. Duis sed rhoncus urna, ut scelerisque magna. Morbi convallis euismod erat varius scelerisque. Nulla ac interdum mauris. Integer ac lacus ultrices, fermentum ligula sed, consectetur felis. Morbi faucibus id urna nec rhoncus.</p>
-        <p>Aliquam sed elementum sapien. Cras quis semper nunc. Phasellus efficitur quam eu semper fermentum. Integer bibendum nunc placerat lacus tempus, ut ullamcorper sapien iaculis. Aliquam a molestie diam. Ut ac ligula sed nibh fringilla pulvinar quis ut felis. Integer at justo nunc. Nulla dictum ut erat et malesuada. Fusce tristique tortor eu turpis vulputate, quis tempor erat tempor. Sed malesuada mollis ex, consectetur aliquet eros gravida non. Morbi efficitur mauris sed gravida porta. Sed laoreet cursus urna, eu fringilla quam ornare sed. Mauris in ex erat. Fusce sit amet odio in tortor tristique ultricies non in arcu.</p>
-        <small class="text-secondary">12/01/2023 - Por: Fabian Ruiz</small>
+<section class="container-lg container-fluid pt-4 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <button class="btn btn-outline-primary mb-4" (click)="navigateBack()"><i class="bi bi-arrow-left"></i> Regresar</button>
+      <div class="card rounded-4 border-0">
+        <div class="card-body p-5 text-start">
+          <img [src]="new.picture" alt="news-image" height="420" class="w-100 mb-3 rounded-4 object-fit-cover">
+          <div class="container">
+            <h5 class="mb-2">{{ new.title }}</h5>
+            <p>{{ new.description }}</p>
+            <small class="text-secondary">{{ new.date }} - Por: {{ new.reporter }} en {{ new.city }}</small>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>

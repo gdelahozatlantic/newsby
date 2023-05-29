@@ -1,0 +1,11 @@
+.toast-position {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+.show {
+  opacity: 1;
+}

@@ -1,0 +1,7 @@
+<div class="alert toast-position mb-0" [class.show]="showToast" [ngClass]="typeAlert" role="alert">
+  <div class="d-flex gap-2 align-items-center">
+    <i class="bi" [ngClass]="icon"></i>
+    <h6 class="mb-0">{{ title }}</h6>
+  </div>
+  {{ message }}
+</div>
