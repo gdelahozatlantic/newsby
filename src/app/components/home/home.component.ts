@@ -3,6 +3,8 @@ import { news } from 'src/app/data/news.data';
 import { INew } from 'src/app/model/New';
 import { ToastComponent } from '../toast/toast.component';
 import { ToastService } from 'src/app/service/toast.service';
+import { Router } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 
 declare var $: any;
 
@@ -23,7 +25,9 @@ export class HomeComponent {
   showCardFormat: string = 'NACIONAL';
 
   constructor(
-    public _toastService: ToastService
+    public _toastService: ToastService,
+    private router: Router,
+    private scroll: ViewportScroller
   ){
     this.internationalNews = news.filter(itemNew => itemNew.isInternationalNote);
     this.nationalNews = news.filter(itemNew => !itemNew.isInternationalNote &&  itemNew.hour < '17:20');
@@ -40,10 +44,15 @@ export class HomeComponent {
     const selectedNew = this.nationalNews.find(itemNew => itemNew.id === idNew) || this.internationalNews.find(itemNew => itemNew.id === idNew);
     if (selectedNew && !this.myNewsList.some(item => item.id === idNew)) {
       this.myNewsList.push(selectedNew);
-      this._toastService.showCustomToast('Éxito','Se ha agregado una noticia a tu lista.','alert-success')
+      this._toastService.showCustomToast('Éxito','Se ha agregado una noticia a tu selección.','alert-success')
     } else {
-      this._toastService.showCustomToast('Aviso', 'Esta noticia ya está en tu lista.', 'alert-warning', 'bi-exclamation-circle')
+      this._toastService.showCustomToast('Aviso', 'Esta noticia ya está en tu selección.', 'alert-warning', 'bi-exclamation-circle')
     }
+  }
+
+  navigateToNew(id: number){
+    this.router.navigate(['/news', id]);
+    this.scroll.scrollToPosition([0,0]);
   }
 
   removeNewList(idNew: number): void {

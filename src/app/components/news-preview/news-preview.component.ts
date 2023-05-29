@@ -1,4 +1,6 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router, Scroll } from '@angular/router';
 
 @Component({
   selector: 'newsby-news-preview',
@@ -14,8 +16,18 @@ export class NewsPreviewComponent {
   @Input() picture = '';
   @Output() emitId: EventEmitter<number> = new EventEmitter();
 
+  constructor(
+    private router: Router,
+    private scroll: ViewportScroller
+  ){}
+
   saveElement(value: number){
     this.emitId.emit(value);
+  }
+
+  navigateToNew(id: number){
+    this.router.navigate(['/news', id]);
+    this.scroll.scrollToPosition([0,0]);
   }
 
 }

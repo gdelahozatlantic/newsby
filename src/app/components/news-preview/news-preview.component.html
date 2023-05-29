@@ -4,7 +4,7 @@
     <h5 class="mb-2">{{ title }}</h5>
     <small class="text-secondary mb-3">{{ date }} - {{ city }}</small>
     <div class="d-flex justify-content-center gap-2 mt-3">
-      <button class="btn btn-primary" [routerLink]="['/news']">Leer ahora</button>
+      <button class="btn btn-primary" (click)="navigateToNew(idNew)">Leer ahora</button>
       <button class="btn btn-outline-success" (click)="saveElement(idNew)"><i class="bi bi-bookmark"></i></button>
     </div>
   </div>
