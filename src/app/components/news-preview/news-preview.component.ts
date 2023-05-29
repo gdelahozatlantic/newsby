@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'newsby-news-preview',
@@ -10,7 +10,12 @@ export class NewsPreviewComponent {
   @Input() section = '';
   @Input() date = '';
   @Input() city = '';
-  @Input() idNote = 0;
+  @Input() idNew = 0;
   @Input() picture = '';
+  @Output() emitId: EventEmitter<number> = new EventEmitter();
+
+  saveElement(value: number){
+    this.emitId.emit(value);
+  }
 
 }

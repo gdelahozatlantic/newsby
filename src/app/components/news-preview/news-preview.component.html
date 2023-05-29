@@ -1,11 +1,11 @@
 <div class="card rounded-4 border-0 cursor-pointer" role="button">
   <div class="card-body text-center">
-    <img [src]="picture" alt="news-image" height="142" class="w-100 mb-3 rounded-4">
+    <img [src]="picture" alt="news-image" height="142" class="w-100 mb-3 rounded-4 object-fit-cover">
     <h5 class="mb-2">{{ title }}</h5>
     <small class="text-secondary mb-3">{{ date }} - {{ city }}</small>
     <div class="d-flex justify-content-center gap-2 mt-3">
       <button class="btn btn-primary" [routerLink]="['/news']">Leer ahora</button>
-      <button class="btn btn-outline-success"><i class="bi bi-bookmark"></i></button>
+      <button class="btn btn-outline-success" (click)="saveElement(idNew)"><i class="bi bi-bookmark"></i></button>
     </div>
   </div>
 </div>

@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { news } from 'src/app/data/news.data';
 import { INew } from 'src/app/model/New';
+import { ToastComponent } from '../toast/toast.component';
+import { ToastService } from 'src/app/service/toast.service';
+
+declare var $: any;
 
 @Component({
   selector: 'newsby-home',
@@ -8,18 +12,21 @@ import { INew } from 'src/app/model/New';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  isInternationalNote = false;
-  nationalNotes: INew[] = [];
-  internationalNotes: INew[] = [];
-  matchNotes: INew[] = [];
+  toast: any;
+  myNewsList : INew[] = [];
+  nationalNews: INew[] = [];
+  internationalNews: INew[] = [];
+  matchNews: INew[] = [];
   breakingNews: INew[] = [];
   isFirstSlide = true;
   news = news;
   showCardFormat: string = 'NACIONAL';
 
-  constructor(){
-    this.internationalNotes = news.filter(itemNew => itemNew.isInternationalNote);
-    this.nationalNotes = news.filter(itemNew => !itemNew.isInternationalNote &&  itemNew.hour < '17:20');
+  constructor(
+    public _toastService: ToastService
+  ){
+    this.internationalNews = news.filter(itemNew => itemNew.isInternationalNote);
+    this.nationalNews = news.filter(itemNew => !itemNew.isInternationalNote &&  itemNew.hour < '17:20');
     this.breakingNews = news.filter(itemNew => itemNew.hour > '17:20');
   }
 
@@ -27,11 +34,23 @@ export class HomeComponent {
     this.showCardFormat = title;
   }
 
-  removeNoteList(idNote: number): void {
-    this.breakingNews = this.breakingNews.filter(item => item.id !== idNote);
+  addNewList(idNew: number): void {
+    console.log(idNew);
+
+    const selectedNew = this.nationalNews.find(itemNew => itemNew.id === idNew) || this.internationalNews.find(itemNew => itemNew.id === idNew);
+    if (selectedNew && !this.myNewsList.some(item => item.id === idNew)) {
+      this.myNewsList.push(selectedNew);
+      this._toastService.showCustomToast('Éxito','Se ha agregado una noticia a tu lista.','alert-success')
+    } else {
+      this._toastService.showCustomToast('Aviso', 'Esta noticia ya está en tu lista.', 'alert-warning', 'bi-exclamation-circle')
+    }
+  }
+
+  removeNewList(idNew: number): void {
+    this.myNewsList = this.myNewsList.filter(itemNew => itemNew.id !== idNew);
   }
 
   findNote(title: string) {
-    this.matchNotes = news.filter(itemNew => itemNew.title.toLocaleLowerCase().includes(title.toLocaleLowerCase()));
+    this.matchNews = news.filter(itemNew => itemNew.title.toLocaleLowerCase().includes(title.toLocaleLowerCase()));
   }
 }

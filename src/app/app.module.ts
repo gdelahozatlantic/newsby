@@ -10,6 +10,7 @@ import { NewsComponent } from './components/news/news.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NewsPreviewComponent } from './components/news-preview/news-preview.component';
 import { SwitchButtonComponent } from './components/switch-button/switch-button.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SwitchButtonComponent } from './components/switch-button/switch-button.
     NewsComponent,
     NotFoundComponent,
     NewsPreviewComponent,
-    SwitchButtonComponent
+    SwitchButtonComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,

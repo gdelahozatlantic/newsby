@@ -15,7 +15,7 @@ export const news: INew[] = [
  },
  {
     id: 2,
-    picture: 'https://source.unsplash.com/user/c_v_r/250x250',
+    picture: 'https://images.unsplash.com/photo-1550399105-c4db5fb85c18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80',
     title: 'La portada de los libros de texto tendrán nuevo diseño',
     description: 'Transfusion associated circulatory overload',
     date: '01/06/2021',
@@ -99,7 +99,7 @@ export const news: INew[] = [
  },
  {
     id: 9,
-    picture: 'https://images.unsplash.com/photo-1417325384643-aac51acc9e5d?q=75&fm=jpg&w=1080&fit=max',
+    picture: 'https://images.unsplash.com/photo-1519412666065-94acb3f8838f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
     title: '¡La orquesta sinfonica se presentará gratis!',
     description: 'Driver of pick-up truck or van injured in collision with car, pick-up truck or van in traffic accident, initial encounter',
     date: '28/03/2021',
