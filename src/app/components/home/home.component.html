@@ -1,27 +1,27 @@
-<div class="container py-4">
-  <ng-container *ngIf="!titleNew.length; else searchResult">
-    <div id="carouselExample" class="carousel slide mb-4">
-      <div class="carousel-inner rounded-4">
-        <div *ngFor="let new of breakingNews; let isFirst = first" class="carousel-item" [class.active]="isFirst">
-          <img [src]="new.picture" height="420" class="d-block w-100 object-fit-cover" alt="...">
-          <div class="gradient rounded-4"></div>
-          <div class="carousel-caption d-none d-md-block">
-            <h6>Noticia de ultima hora</h6>
-            <h2 class="mb-3">{{ new.title }}</h2>
-            <button class="btn btn-primary" (click)="navigateToNew(new.id)">Leer ahora</button>
-          </div>
+<ng-container *ngIf="!titleNew.length; else searchResult">
+  <div id="carouselExample" class="carousel slide mb-4">
+    <div class="carousel-inner">
+      <div *ngFor="let new of breakingNews; let isFirst = first" class="carousel-item" [class.active]="isFirst">
+        <img [src]="new.picture" height="420" class="d-block w-100 object-fit-cover" alt="...">
+        <div class="gradient"></div>
+        <div class="carousel-caption d-none d-md-block">
+          <h6>Noticia de ultima hora</h6>
+          <h2 class="mb-3">{{ new.title }}</h2>
+          <button class="btn btn-primary" (click)="navigateToNew(new.id)">Leer ahora</button>
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 
+  <div class="container py-4">
     <!-- News preview -->
     <div class="mb-4 d-flex justify-content-between align-items-center">
       <h3 class="fw-bold">Novedades principales</h3>
@@ -75,11 +75,13 @@
         <p class="text-secondary">No tienes noticias agregadas a tu selección</p>
       </section>
     </ng-template>
-  </ng-container>
-  <ng-container >
-    <newsby-toast [icon]="_toastService.icon" [title]="_toastService.toastTitle" [message]="_toastService.toastMessage" [typeAlert]="_toastService.typeAlert" [showToast]="_toastService.showToast"></newsby-toast>
-  </ng-container>
-  <ng-template #searchResult>
+  </div>
+</ng-container>
+<ng-container>
+  <newsby-toast [icon]="_toastService.icon" [title]="_toastService.toastTitle" [message]="_toastService.toastMessage" [typeAlert]="_toastService.typeAlert" [showToast]="_toastService.showToast"></newsby-toast>
+</ng-container>
+<ng-template #searchResult>
+  <div class="container py-4">
     <!-- News search -->
     <div style="height: 90vh;">
       <h3 class="fw-bold mb-4">Resultados</h3>
@@ -89,5 +91,5 @@
         </div>
       </section>
     </div>
-  </ng-template>
-</div>
+  </div>
+</ng-template>
